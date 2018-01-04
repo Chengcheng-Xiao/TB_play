@@ -1,0 +1,74 @@
+&TB_FILE
+Hrfile = 'wannier90_hr.up.dat'
+Package = 'VASP'
+/
+
+LATTICE
+Angstrom
+4.1700001     0.0000000     0.0000000
+0.0000000     5.4899998     0.0000000
+0.0000000     0.0000000    23.0000000
+
+ATOM_POSITIONS
+  3
+Direct
+Te       4.1700001     5.4881927    11.5001325
+Te       2.0850000     3.5980251    12.5843761
+Te       2.0850000     1.8882919    10.4154914
+
+PROJECTORS
+3 3 3
+Te pz px py
+Te pz px py
+Te pz px py
+
+
+SURFACE            ! See doc for details
+ 1  0  0
+ 0  1  0
+ 0  0  1
+
+&CONTROL
+BulkBand_calc=T
+BerryCurvature_calc = F
+Slabspintexture_calc = F
+/
+
+&SYSTEM
+
+NumOccupied = 6         !12
+!SOC = 1
+E_FERMI = -2.6959        ! e-fermi
+!surf_onsite= 0.0        ! surf_onsite
+/
+
+&PARAMETERS
+!Eta_Arc = 0.001     ! infinite small value, like brodening
+!E_arc = -1.4449         ! energy for calculate Fermi Arc
+!OmegaNum = 501      ! omega number
+!OmegaMin = -1     ! energy interval
+!OmegaMax =  1     ! energy interval
+Nk1 =  201           ! number k points
+!Nk2 =  201           ! number k points
+!NP =1             ! number of principle layers
+/
+
+
+KPATH_BULK ! k point path
+5 ! number of k line only for bulk band
+G 0   0	     0        Y 0      0.5     0
+Y 0   0.5    0        M 0.5    0.5     0
+M 0.5 0.5    0        X 0.5    0       0
+X 0.5 0      0        G 0      0       0
+G 0   0      0        M 0.5    0.5     0
+
+
+KPLANE_BULK
+-0.500 -0.500 0.000 ! Original point for 3D k plane
+ 1.000  0.000 0.000 ! The first vector to define 3d k space plane
+ 0.000  1.000 0.000 ! The second vector to define 3d k space plan
+
+KPLANE_SLAB
+-0.5 -0.5      ! Original point for 2D k plane
+ 1.0  0.0      ! The first vector to define 2D k plane
+ 0.0  1.0      ! The second vector to define 2D k plane  for arc plots
