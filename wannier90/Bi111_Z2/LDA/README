@@ -1,0 +1,32 @@
+[ Bi(111) monolayer ]
+This folder contains steps to obtain Hamiltonian under wannier representation for later Z2 calculations.
+
+------------------------------------------------
+
+1. Structural relaxation 
+
+2. SCF calculation to obtain wavefunction 'WAVECAR' and charge density 'CHGCAR'.
+  * copy 'CONTCAR' from step 1 to this directory as 'POSCAR'.
+
+3. non-selfconsistent calculation to get bandstructure.
+  * copy 'CHGCAR' and 'POSCAR' from step 2 to this directory.
+  * analysis band composition for later wannier projection:
+	- here, total number of bloch bands is 48, low-lying s-orbital dominated 4 bloch bands should be excluded in the wannierisation.
+	  (*) I made a mistake here. I only excluded 2 low lyint s-orbitals in the projection step. However, because the other 2 bands lies in different 
+	      energy window, this will not affect the final result.
+        - this means we should only consider p-orbitals in later wannierisation.
+        - fat band analysis shows p-orbital contribution in conduction band is entangled with other empty bands, eidentangle needed.
+	- hence we set :dis_win_min  = -7.2   # the minimal energy for disentangle window, I set this below lowest occupied p-orbital band energy.
+			dis_win_max  =  3.5   # the maximal energy for disentangle window, setting this higher than highest band energy is usually harmless.
+			dis_froz_min = -7.2   # because no entangled band is included in the lower part of disentanglement windows, this equals to dis_win_min.
+			dis_froz_max =  1.45  # usually, this is set to lowest non-considered (here, non-p-orbital) band energy.
+
+4. calculate proper projection for wannier90 input using VASP.
+  * once 'wannier90.win' file is written, copy 'WAVECAR' from step 2 to this folder and run vasp.
+  * VASP will generate 'wannier90.mmn' 'wannier90.eig' 'wannier90.amn' and make up whats missing in the 'wannier90.win' file.
+
+5. Wannier90 calculation, see REAEME file in the '5-wannier_cal' folder.
+
+6. Wannier_tools calculation to calculate wilson loop to get Z2, read README in '6-WT_cal' folder.
+
+------------------------------------------------

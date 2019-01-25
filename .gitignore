@@ -1,0 +1,8 @@
+.DS_Store
+Z2pack/
+kwant/
+pybinding/
+pythtb/
+wannier90/experimental/*
+wannier90/Bi111_Z2/PBE/*
+POTCAR

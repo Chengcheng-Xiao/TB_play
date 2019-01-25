@@ -1,0 +1,18 @@
+This folder contains steps to calculate wilson loop and surface state using wannier_tools..
+
+because there are two different way of cutting ribbon for Bi(111) monolayer, two different folder.
+------------------------------------------------
+
+1. calculate willson loop and Z2.
+  * copy wannier90_hr.dat from wannier90 step to here
+  * issue "wt.x &"
+  * issue "gnuplot wanniercenter3D_Z2.gnu"
+  * examin 'WT.out' and wanniercenter3D_Z2.eps
+
+2. calculate surface state.
+  * copy wannier90_hr.dat from wannier90 step to here
+  * issue "wt.x &"
+  * issue "gnuplot surfdos_r.gnu"
+  * examin 'surfdos_r.png'
+
+------------------------------------------------
