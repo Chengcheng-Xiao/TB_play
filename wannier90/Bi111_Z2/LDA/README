@@ -3,6 +3,8 @@ This folder contains steps to obtain Hamiltonian under wannier representation fo
 
 ------------------------------------------------
 
+[all VASP calculation were performed using recommanded LDA pseudopotentials]
+
 1. Structural relaxation 
 
 2. SCF calculation to obtain wavefunction 'WAVECAR' and charge density 'CHGCAR'.

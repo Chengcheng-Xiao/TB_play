@@ -20,11 +20,11 @@ guiding_centres = true
 #wannier_plot_list = 1-9
 #wannier_plot_supercell = 3 3 1
 
-write_xyz = true
-write_tb = true
-write_rmn = true
-write_hr = true
-write_u_matrices = true
+#write_xyz = true
+#write_tb = true
+#write_rmn = true
+#write_hr = true
+#write_u_matrices = true
 
 #restart = plot
 #bands_plot = true
