@@ -1,0 +1,9 @@
+Run Wanneirtools to get surface band and Z2
+
+$ cp wt_Z2.in wt.in
+$ wt.x &
+
+$ cp wt_SS.in wt.in
+$ wt.x &
+
+check wt.out file to see calculated Z2

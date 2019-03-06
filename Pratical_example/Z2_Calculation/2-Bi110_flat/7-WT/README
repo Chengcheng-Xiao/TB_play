@@ -1,0 +1,11 @@
+This folder contains steps to calculate wilson loop and surface state using wannier_tools.
+
+------------------------------------------------
+
+ calculate willson loop and Z2.
+  * copy wannier90_hr.dat_nsymm8 from the final step of 6_wannier_cal to here
+  * issue "wt.x &" to calculate Z2.
+  * issue "gnuplot wanniercenter3D_Z2.gnu" to see the evolution of wanneir charge centers.
+  ~ examin 'WT.out' and wanniercenter3D_Z2.eps
+
+------------------------------------------------

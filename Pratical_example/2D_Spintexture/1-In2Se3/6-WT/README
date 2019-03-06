@@ -1,0 +1,10 @@
+This folder contains steps to calculate wilson loop and surface state using wannier_tools.
+
+------------------------------------------------
+
+ calculate willson loop and Z2.
+  * copy wannier90_hr.dat from the final step of 6_wannier_cal to here
+  * issue "wt.x &" to calculate surfacestate.
+  * issue "gnuplot spintexture_R.gnu" generate picture.
+
+------------------------------------------------

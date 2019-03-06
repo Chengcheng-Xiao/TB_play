@@ -1,0 +1,4 @@
+
+The number of threads in each node for OpenMP parallelization is 1.
+
+input_open: can not open Methane.dat

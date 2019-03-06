@@ -1,0 +1,47 @@
+[ Bi(110) monolayer ]
+This folder contains steps to obtain Hamiltonian under wannier representation for later Z2 calculations.
+
+------------------------------------------------
+
+[all VASP calculation were performed using recommanded LDA pseudopotentials]
+* -> command to issue
+~ -> analysis
+- -> detail
+
+1. Structural relaxation
+  * run VASP
+
+2. SCF calculation to obtain wavefunction 'WAVECAR' and charge density 'CHGCAR'.
+  * copy 'CONTCAR' from step 1 to this directory as 'POSCAR'.
+  * run VASP
+
+3. non-selfconsistent calculation to get bandstructure.
+  * copy 'CHGCAR' and 'POSCAR' from step 2 to this directory.
+  ~ analysis band composition for later wannier projection:
+   * using p4vasp's “fat band analysis” (sometimes called “projected band”) function to analysis orbital contribution to the band structure.
+   - the total number of bloch bands is 48 (grep NBANDS OUTCAR in step 2), low-lying s-orbital dominated 4 bloch bands could be excluded in the wannierisation.
+    (?) I made a mistake here. in the wannier90.win file, I only excluded 2 low lying s-orbitals in the projection step. However, because the other 2 bands lies in different
+        energy window than desired p-orbtial band, they will not affect the final result. That means they are useless bloch band just like high energy empty bands.
+   - we only want to consider p-orbitals for initial projection.
+   - fat band analysis shows p-orbital contribution in conduction band is entangled with other empty bands, thus, disentangle procedure is needed here.
+   - the disentanglement window could be easily calculated:
+	dis_win_min  = -5.7351    # the minimal energy for disentangle window, I set this below lowest occupied p-orbital band energy, above s-orbital band.
+	dis_win_max  =  10.0      # the maximal energy for disentangle window, setting this higher than highest band energy is usually harmless.
+	dis_froz_min = -5.7351    # because no entangled band is included in the lower part of disentanglement windows, this equals to dis_win_min.
+	dis_froz_max =  1.2649    # usually, this is set to lowest non-considered (here, non-p-orbital in fat band anslysis) band energy.
+
+4. Generate initial projection for wannier90 input using VASP.
+  ~ please check wannier90.win file, make sure you understand everything. If not, please check wannier90's manual.
+  ~ LWANNIER90 = .TRUE. is added to the INCAR, and I commented out ISTART tag so VASP will automatically reads WAVECAR
+  ~ note that I did not write atomic position and cell vector here. These part will be automatically filled by VASP2wannier90 interface.
+  * once 'wannier90.win' file is written, copy 'WAVECAR' from step 2 to this folder and run VASP.
+  * VASP will generate 'wannier90.mmn' 'wannier90.eig' 'wannier90.amn' and make up whats missing in the 'wannier90.win' file.
+
+5. Wannier90 calculation, see REAEME file in the '5-wannier_cal' folder.
+
+6. Using wannhr_symm to symmetrize wannier_hr.dat
+  * see wannhr_symm docs in wannier_tools
+ 
+7. Wannier_tools calculation to calculate wilson loop to get Z2, read README in '7-WT' folder.
+
+------------------------------------------------

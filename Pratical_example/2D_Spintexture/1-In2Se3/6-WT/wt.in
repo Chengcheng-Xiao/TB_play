@@ -1,0 +1,61 @@
+&TB_FILE
+Hrfile = 'wannier90_hr.dat'      
+Package = 'VASP'             ! obtained from VASP, it could be 'VASP', 'QE', 'Wien2k', 'OpenMx'
+/
+
+LATTICE
+Angstrom
+4.1028399     0.0000000     0.0000000
+2.0514200     3.5531636     0.0000000
+0.0000000     0.0000000    28.7429749
+
+ATOM_POSITIONS
+5                               ! number of atoms for projectors
+Direct                          ! Direct or Cartisen coordinate
+In   0.83333   0.83333   0.57186
+In   0.50000   0.50000   0.42472
+Se   0.16666   0.16666   0.38138
+Se   0.16667   0.16667   0.61780
+Se   0.50000   0.50000   0.51336
+
+PROJECTORS
+ 1 1 3 3 3          ! number of projectors
+In s                ! projectors
+In s
+Se px py pz
+Se px py pz
+Se px py pz
+
+
+SURFACE            ! See doc for details
+ 1  0  0
+ 0  1  0
+ 0  0  1
+
+
+&CONTROL
+SlabSpintexture_calc  = T
+/
+
+&SYSTEM
+NumOccupied = 18        ! NumOccupied
+SOC = 1                 ! soc
+/
+
+&PARAMETERS
+Eta_Arc = 0.005     ! infinite small value, like brodening 
+E_arc = -3.2547         ! energy for calculate Fermi Arc
+Nk1 = 101            ! number k points  odd number would be better
+Nk2 = 101            ! number k points  odd number would be better
+/
+
+!KPATH_BULK            ! k point path
+!3              ! number of k line only for bulk band
+!G  0.00000  0.00000 0.0000 Y  0.00000  0.50000 0.0000
+!Y  0.00000  0.50000 0.0000 M -0.33333  0.66666 0.0000
+!M -0.33333  0.66666 0.0000 G  0.00000  0.00000 0.0000
+
+KPLANE_SLAB
+ 0.0  0.0      ! Original point for 2D k plane
+ 0.5  0.0      ! The first vector to define 2D k plane 
+ 0.0  0.5      ! The second vector to define 2D k plane  for arc plots

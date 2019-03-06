@@ -1,0 +1,25 @@
+num_wann        =  22
+num_bands = 22
+num_iter        = 0
+
+begin projections
+In:s
+Se:p
+end projections
+
+exclude_bands:1-26,49-72
+write_hr=.true.
+
+#wannier_plot = true
+#wannier_plot_list = 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21
+#wannier_plot_supercell = 2 2 1
+
+#restart = plot
+#bands_plot = true
+bands_num_points = 50
+bands_plot_format = gnuplot
+begin kpoint_path
+G 0.00000  0.00000 0.0000 Y 0.00000  0.50000 0.0000
+Y 0.00000  0.50000 0.0000 M 0.33333  0.33333 0.0000
+M 0.33333  0.33333 0.0000 G 0.00000  0.00000 0.0000
+end kpoint_path

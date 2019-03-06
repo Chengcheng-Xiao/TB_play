@@ -3,6 +3,6 @@ Z2pack/
 kwant/
 pybinding/
 pythtb/
-wannier90/experimental/*
-wannier90/Bi111_Z2/PBE/*
+wannier90/
+wannier_tools/
 POTCAR

@@ -1,0 +1,37 @@
+num_wann        =  12
+num_bands       =  46
+num_iter        =  0
+exclude_bands:1-2
+
+kmesh_tol=0.00001
+
+dis_win_min=-7.2
+dis_win_max=3.5
+dis_froz_min=-7.2
+dis_froz_max=1.45
+
+begin projections
+Bi:p
+end projections
+
+guiding_centres = true
+
+#wannier_plot = true
+#wannier_plot_list = 1-9
+#wannier_plot_supercell = 3 3 1
+
+#write_xyz = true
+#write_tb = true
+#write_rmn = true
+#write_hr = true
+#write_u_matrices = true
+
+#restart = plot
+#bands_plot = true
+bands_num_points = 50
+bands_plot_format = gnuplot
+begin kpoint_path
+G 0.00000  0.00000 0.0000 Y 0.50000  0.00000 0.0000
+Y 0.50000  0.00000 0.0000 M 0.33333  0.33333 0.0000
+M 0.33333  0.33333 0.0000 G 0.00000  0.00000 0.0000
+end kpoint_path

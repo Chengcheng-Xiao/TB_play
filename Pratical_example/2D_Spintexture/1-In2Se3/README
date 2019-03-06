@@ -1,0 +1,39 @@
+[ In2Se3 monolayer ]
+This folder contains steps to obtain Hamiltonian under wannier representation and calculate its spintexture.
+
+------------------------------------------------
+
+[all VASP calculation were performed using recommanded LDA pseudopotentials]
+* -> command to issue
+~ -> analysis
+- -> detail
+
+1. Structural relaxation
+  * run VASP
+
+2. SCF calculation to obtain wavefunction 'WAVECAR' and charge density 'CHGCAR'.
+  * copy 'CONTCAR' from step 1 to scf_PBE directory as 'POSCAR'.
+  * run VASP
+  * copy 'WAVECAR' from scf_PBE to scf_SOC directory
+  * run VASP
+
+3. non-selfconsistent calculation to get bandstructure.
+	* copy 'CHGCAR' and 'POSCAR' from scf_PBE to scf_PBE directory.
+  * copy 'CHGCAR' and 'POSCAR' from scf_SOC to scf_SOC directory.
+  ~ analysis band composition with scf_SOC for later wannier projection:
+   * using p4vasp's “fat band analysis” (sometimes called “projected band”) function to analysis orbital contribution to the band structure.
+   - the total number of bloch bands is 72 (grep NBANDS OUTCAR in step 2), we can see In atoms' s-orbital and Se atoms' p-orbital clustered around a single band.
+   - fat band analysis shows orbital contribution in conduction band does not entangled with other empty bands, thus, no disentangle procedure is needed here.
+
+4. Generate initial projection for wannier90 input using VASP.
+  ~ please check wannier90.win file, make sure you understand everything. If not, please check wannier90's manual.
+  ~ LWANNIER90 = .TRUE. is added to the INCAR, and I commented out ISTART tag so VASP will automatically reads WAVECAR
+  ~ note that I did not write atomic position and cell vector here. These part will be automatically filled by VASP2wannier90 interface.
+  * once 'wannier90.win' file is written, copy 'WAVECAR' from step 2 to this folder and run VASP.
+  ~ VASP will generate 'wannier90.mmn' 'wannier90.eig' 'wannier90.amn' and make up whats missing in the 'wannier90.win' file.
+
+5. Wannier90 calculation, see REAEME file in the '5-wannier_cal' folder.
+
+6. Wannier_tools calculation to calculate spintexture, read README in '6-WT' folder.
+  ~ because wannier_tools only allows spintexture calculation with bulk materials. Here we treats vacuum direction of 2D materials as cut surface to calculate spintexutre.
+------------------------------------------------
