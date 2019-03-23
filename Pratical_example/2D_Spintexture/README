@@ -1,0 +1,6 @@
+Im using Wannier Tools to plot 2D spintexture.
+
+The SURFACE in wt.in is set to align with vacuum direction.
+
+Note that this only works if the system is 2 dimensional.
+
