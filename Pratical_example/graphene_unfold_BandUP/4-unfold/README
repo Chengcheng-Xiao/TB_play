@@ -1,0 +1,5 @@
+copy files from 3-get_wfc and 2-get_KPOINTS to here and 
+
+> bandup unfold -emin -20 -emax 5 -dE 0.050
+
+> bandup plot -input_file unfolded_EBS_symmetry-averaged.dat --show --save  -plotdir plot --round_cb 0
